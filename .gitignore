@@ -1,0 +1,4 @@
+gradle-version-checker
+.idea
+bin
+vendor/
