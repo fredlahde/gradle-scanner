@@ -1,0 +1,23 @@
+[
+  {
+    "regex": "^compile group:\\s[\"']([a-z.\\d]*)[\"'],\\sname:\\s[\"']([\\da-z-.]*)[\"'],\\sversion:\\s[\"']([\\da-zA-Z.]*)[\"']"
+  },
+  {
+    "regex": "^compile\\s[\"']([\\da-z.-]+):([\\da-z-.]+):([\\da-z.]+)[\"']"
+  },
+  {
+    "regex": "^testCompile group:\\s[\"']([a-z.\\d]*)[\"'],\\sname:\\s[\"']([a-z-\\d]*)[\"'],\\sversion:\\s[\"']([\\da-zA-Z.]*)[\"']"
+  },
+  {
+    "regex": "^providedCompile group:\\s[\"']([a-z.\\d]*)[\"'],\\sname:\\s[\"']([a-z-\\d]*)[\"'],\\sversion:\\s[\"']([\\da-zA-Z.]*)[\"']"
+  },
+  {
+    "regex": "^runtime group:\\s[\"']([a-z.\\d]*)[\"'],\\sname:\\s[\"']([a-z-\\d]*)[\"'],\\sversion:\\s[\"']([\\da-zA-Z.]*)[\"']"
+  },
+  {
+    "regex": "^classpath\\s[\"']([\\da-z.-]+):([\\da-z-.]+):([\\da-z.]+)[\"']"
+  },
+  {
+    "regex": "^compileOnly\\s[\"']([\\da-z.-]+):([\\da-z-.]+):([\\da-z.]+)[\"']"
+  }
+]

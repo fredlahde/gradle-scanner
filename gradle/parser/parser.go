@@ -34,12 +34,7 @@ func (n *NoParserFoundError) Error() string {
 var availableParser []Parser = make([]Parser, 0)
 
 func init() {
-	availableParser = append(availableParser, &TypeOne{})
-	availableParser = append(availableParser, &TypeTwo{})
-	availableParser = append(availableParser, &TypeThree{})
-	availableParser = append(availableParser, &TypeFour{})
-	availableParser = append(availableParser, &TypeFive{})
-	availableParser = append(availableParser, &TypeSix{})
+	availableParser = append(availableParser, &jsonConfiguredParser{})
 }
 
 func ParseDeps(line string) (Dependency, error) {
