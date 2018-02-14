@@ -15,13 +15,12 @@ var (
 
 func main() {
 	ph := gradle.NewProjectsFolder(basePath)
-	ph.FindGradleProjects()
+	ph.FindGradleProjects();
 	var wg sync.WaitGroup
 	wg.Add(len(ph.Projects))
 	for _, p := range ph.Projects {
 		go func(prj gradle.Project, wg *sync.WaitGroup) {
-			err := prj.GradleFile.FindDeps()
-			if err != nil {
+			if err := prj.GradleFile.FindDeps(); err != nil {
 				log.Println(err)
 			}
 			wg.Done()

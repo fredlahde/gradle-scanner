@@ -15,11 +15,15 @@ type typeDefinition struct {
 	mu       sync.RWMutex
 }
 
+func (t *typeDefinition) compile() {
+	t.mu.Lock()
+	t.compiled = regexp.MustCompile(t.Regex)
+	t.mu.Unlock()
+}
+
 func (t *typeDefinition) build(line string) (Dependency, error) {
 	if t.compiled == nil {
-		t.mu.Lock()
-		t.compiled = regexp.MustCompile(t.Regex)
-		t.mu.Unlock()
+		t.compile()
 	}
 
 	dep := Dependency{}
@@ -36,9 +40,7 @@ func (t *typeDefinition) build(line string) (Dependency, error) {
 
 func (t *typeDefinition) match(line string) bool {
 	if t.compiled == nil {
-		t.mu.Lock()
-		t.compiled = regexp.MustCompile(t.Regex)
-		t.mu.Unlock()
+		t.compile()
 	}
 	t.mu.RLock()
 	defer t.mu.RUnlock()

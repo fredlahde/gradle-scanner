@@ -48,7 +48,7 @@ func (f *File) FindDeps() error {
 			continue
 		}
 
-		dep, err := parser.ParseDeps(line)
+		dep, err := parser.Parse(line)
 		if err != nil {
 			if ne, ok := err.(*parser.NoParserFoundError); ok {
 				f.errBag = append(f.errBag, fmt.Errorf("file %s has invalid dep: %s", f.Path, ne.Line))

@@ -4,18 +4,12 @@ import (
 	"fmt"
 )
 
-type Dependency struct {
-	Group    string
-	Artifact string
-	Version  string
-}
+var (
+	availableParser = make([]Parser, 0)
+)
 
-func (d *Dependency) Empty() bool {
-	return d.Group == ""
-}
-
-func (d *Dependency) String() string {
-	return fmt.Sprintf("group: %s artifact: %s version: %s", d.Group, d.Artifact, d.Version)
+func init() {
+	availableParser = append(availableParser, &jsonConfiguredParser{})
 }
 
 type Parser interface {
@@ -31,13 +25,7 @@ func (n *NoParserFoundError) Error() string {
 	return fmt.Sprintf("line did not match any parsers: %s", n.Line)
 }
 
-var availableParser []Parser = make([]Parser, 0)
-
-func init() {
-	availableParser = append(availableParser, &jsonConfiguredParser{})
-}
-
-func ParseDeps(line string) (Dependency, error) {
+func Parse(line string) (Dependency, error) {
 	for _, parser := range availableParser {
 		if parser.match(line) {
 			return parser.build(line)
